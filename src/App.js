@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./index.css";
 
 import theme from "utils/theme";
@@ -10,9 +11,24 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <div class="App">
-        <Navigation items={[]} />
-      </div>
+
+      <Router>
+        <Navigation
+          items={[
+            { content: "Homepage", to: "/" },
+            {
+              content: "budget",
+              to: "/budget",
+            },
+          ]}
+        />
+        <Switch>
+          <Route exact path="/">
+            Homepage
+          </Route>
+          <Route path="/budget">Budget page</Route>
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }
