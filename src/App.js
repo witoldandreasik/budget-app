@@ -5,7 +5,7 @@ import GlobalStyles from "./index.css";
 
 import theme from "utils/theme";
 
-import { Navigation } from "components";
+import { Navigation, Wrapper } from "components";
 
 function App() {
   return (
@@ -21,13 +21,21 @@ function App() {
               to: "/budget",
             },
           ]}
+          RightElement={
+            <div>
+              <button>PL</button>
+              <button>EN</button>
+            </div>
+          }
         />
-        <Switch>
-          <Route exact path="/">
-            Homepage
-          </Route>
-          <Route path="/budget">Budget page</Route>
-        </Switch>
+        <Wrapper>
+          <Switch>
+            <Route exact path="/">
+              Homepage
+            </Route>
+            <Route path="/budget">Budget page</Route>
+          </Switch>
+        </Wrapper>
       </Router>
     </ThemeProvider>
   );
