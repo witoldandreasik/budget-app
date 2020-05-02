@@ -7,7 +7,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 require("dotenv").config();
 
 const token = process.env.API_KEY;
-const id = "338235";
+const id = process.env.PROJECT_ID;
 
 i18n
 
