@@ -3,26 +3,21 @@ import { initReactI18next } from "react-i18next";
 
 import CustomBackend from "./CustomBackend";
 import LanguageDetector from "i18next-browser-languagedetector";
-
 require("dotenv").config();
-
-const token = process.env.API_KEY;
-const id = process.env.PROJECT_ID;
+const token = process.env.REACT_APP_API_KEY;
+const id = process.env.REACT_APP_PROJECT_ID;
 
 i18n
-
   .use(CustomBackend)
-
   .use(LanguageDetector)
-
   .use(initReactI18next)
-
   .init({
     defaultLanguage: "en",
     otherLanguages: ["pl"],
     fallbackLng: "en",
     debug: true,
     saveMissing: true,
+
     backend: {
       // cors-anywhere is a trick. Don't use it in production
       loadPath:
@@ -66,8 +61,9 @@ i18n
         return payload;
       },
     },
+
     interpolation: {
-      escapeValue: false,
+      escapeValue: false, // not needed for react as it escapes by default
     },
   });
 
