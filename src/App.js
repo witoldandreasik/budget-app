@@ -7,7 +7,7 @@ import theme from "utils/theme";
 
 import { useTranslation } from "react-i18next";
 
-import { Navigation, Wrapper, LoadingIndicator } from "components";
+import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 
 function App() {
   const { i18n } = useTranslation();
@@ -26,8 +26,18 @@ function App() {
           ]}
           RightElement={
             <div>
-              <button onClick={() => i18n.changeLanguage("pl")}>PL</button>
-              <button onClick={() => i18n.changeLanguage("en")}>EN</button>
+              <Button
+                variant="regular"
+                onClick={() => i18n.changeLanguage("pl")}
+              >
+                PL
+              </Button>
+              <Button
+                variant="regular"
+                onClick={() => i18n.changeLanguage("en")}
+              >
+                EN
+              </Button>
             </div>
           }
         />
