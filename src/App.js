@@ -12,8 +12,6 @@ import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 import Budget from "pages/Budget";
 
 function App({ budget, fetchBudget, fetchBudgetedCategories }) {
-  console.log(budget);
-
   const { i18n } = useTranslation();
   return (
     <Fragment>
