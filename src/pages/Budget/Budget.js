@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import {
   fetchBudget,
   fetchBudgetedCategories,
+  addTransaction,
 } from "data/actions/budget.actions";
 import { fetchAllCategories } from "data/actions/common.actions";
 
@@ -13,13 +14,17 @@ import { LoadingIndicator, Modal, Button } from "components";
 
 import BudgetCategoryList from "pages/Budget/components/BudgetCategoryList";
 import BudgetTransactionList from "pages/Budget/components/BudgetTransactionList";
+import AddTransactionForm from "pages/Budget/components/AddTransactionForm";
 
 function Budget({
   commonState,
   budgetState,
   fetchBudget,
+  allCategories,
+  budget,
   fetchBudgetedCategories,
   fetchAllCategories,
+  addTransaction,
 }) {
   useEffect(() => {
     fetchBudget(1);
@@ -36,6 +41,10 @@ function Budget({
     [commonState, budgetState]
   );
 
+  const handleSubmitAddTransaction = (values) => {
+    addTransaction({ budgetId: budget.id, data: values });
+  };
+
   return (
     <Fragment>
       <Grid>
@@ -48,7 +57,7 @@ function Budget({
               <Button to="/budget/transactions/new">
                 Add new transactions
               </Button>
-              <BudgetTransactionList />{" "}
+              <BudgetTransactionList />
             </Fragment>
           ) : (
             <LoadingIndicator />
@@ -58,7 +67,13 @@ function Budget({
 
       <Switch>
         <Route path="/budget/transactions/new">
-          <Modal>modal modal modal</Modal>
+          <Modal>
+            <AddTransactionForm
+              categories={allCategories}
+              groupCategoriesBy="parentCategory.name"
+              onSubmit={handleSubmitAddTransaction}
+            />
+          </Modal>
         </Route>
       </Switch>
     </Fragment>
@@ -71,11 +86,13 @@ export default connect(
       budget: state.budget.budget,
       commonState: state.common.loadingState,
       budgetState: state.budget.loadingState,
+      allCategories: state.common.allCategories,
     };
   },
   {
     fetchBudget,
     fetchBudgetedCategories,
     fetchAllCategories,
+    addTransaction,
   }
 )(Budget);
