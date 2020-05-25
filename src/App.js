@@ -10,6 +10,10 @@ import { useTranslation } from "react-i18next";
 
 import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 import Budget from "pages/Budget";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 function App({ budget, fetchBudget, fetchBudgetedCategories }) {
   const { i18n } = useTranslation();

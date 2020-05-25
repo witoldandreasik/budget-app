@@ -216,6 +216,22 @@
       "categoryId": "1",
       "budgetId": "1",
       "id": "na5S10w"
+    },
+    {
+      "description": "transakcja3",
+      "amount": 5.21,
+      "categoryId": "6",
+      "date": "2020-05-25",
+      "budgetId": "1",
+      "id": "Oi0Z5Sa"
+    },
+    {
+      "description": "transakcja4",
+      "amount": 33,
+      "categoryId": "2",
+      "date": "2020-05-25",
+      "budgetId": "1",
+      "id": "VhfsHJD"
     }
   ]
 }
