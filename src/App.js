@@ -7,6 +7,7 @@ import GlobalStyles from "./index.css";
 import theme from "utils/theme";
 
 import { useTranslation } from "react-i18next";
+import { ReactQueryConfigProvider } from "react-query";
 
 import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 import Budget from "pages/Budget";
@@ -61,13 +62,18 @@ function App({ budget, fetchBudget, fetchBudgetedCategories }) {
     </Fragment>
   );
 }
+
+const queryConfig = { suspense: true };
+
 function RootApp() {
   return (
-    <ThemeProvider theme={theme}>
-      <React.Suspense fallback={<LoadingIndicator />}>
-        <App />
-      </React.Suspense>
-    </ThemeProvider>
+    <ReactQueryConfigProvider config={queryConfig}>
+      <ThemeProvider theme={theme}>
+        <React.Suspense fallback={<LoadingIndicator />}>
+          <App />
+        </React.Suspense>
+      </ThemeProvider>
+    </ReactQueryConfigProvider>
   );
 }
 

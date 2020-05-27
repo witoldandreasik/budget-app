@@ -1,24 +1,33 @@
 import React, { useMemo } from "react";
 import { connect } from "react-redux";
 import { groupBy } from "lodash";
+import { useQuery } from "react-query";
 
 import { formatCurrency, formatDate } from "utils";
+import API from "data/fetch";
 
 import { List, ListItem } from "./BudgetTransactionList.css";
 
-function BudgetTransactionList({
-  transactions,
-  allCategories,
-  selectedParentCategoryId,
-  budgetedCategories,
-}) {
+function BudgetTransactionList({ selectedParentCategoryId }) {
+  const { data: budget } = useQuery(
+    ["budget", { id: 1 }],
+    API.budget.fetchBudget
+  );
+  const { data: allCategories } = useQuery(
+    "allCategories",
+    API.common.fetchAllCategories
+  );
+  const { data: budgetedCategories } = useQuery(
+    ["budgetedCategories", { id: 1 }],
+    API.budget.fetchBudgetedCategories
+  );
   const filteredTransactionsBySelectedParentCategory = useMemo(() => {
     if (typeof selectedParentCategoryId === "undefined") {
-      return transactions;
+      return budget.transactions;
     }
 
     if (selectedParentCategoryId === null) {
-      return transactions.filter((transaction) => {
+      return budget.transactions.filter((transaction) => {
         const hasBudgetCategory = budgetedCategories.some(
           (budgetedCategory) =>
             budgetedCategory.categoryId === transaction.categoryId
@@ -27,7 +36,7 @@ function BudgetTransactionList({
       });
     }
 
-    return transactions.filter((transaction) => {
+    return budget.transactions.filter((transaction) => {
       try {
         const category = allCategories.find(
           (category) => category.id === transaction.categoryId
@@ -42,7 +51,7 @@ function BudgetTransactionList({
     allCategories,
     budgetedCategories,
     selectedParentCategoryId,
-    transactions,
+    budget.transactions,
   ]);
 
   const groupedTransactions = useMemo(
@@ -82,8 +91,5 @@ function BudgetTransactionList({
 }
 
 export default connect((state) => ({
-  transactions: state.budget.budget.transactions,
-  budgetedCategories: state.budget.budgetedCategories,
-  allCategories: state.common.allCategories,
   selectedParentCategoryId: state.budget.selectedParentCategoryId,
 }))(BudgetTransactionList);

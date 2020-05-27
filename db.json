@@ -232,6 +232,14 @@
       "date": "2020-05-25",
       "budgetId": "1",
       "id": "VhfsHJD"
+    },
+    {
+      "description": "transakcja 5",
+      "amount": 3,
+      "categoryId": "1",
+      "date": "2020-05-26",
+      "budgetId": "1",
+      "id": "DO2k7OJ"
     }
   ]
 }

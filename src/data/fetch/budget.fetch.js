@@ -1,15 +1,18 @@
-export const fetchBudget = (id) => {
-  const promise = fetch(
+export const fetchBudget = async (key, { id }) => {
+  console.log({ id });
+  const response = await fetch(
     `${process.env.REACT_APP_API_URL}/budgets/${id}/?_embed=transactions`
   );
-  return promise;
+  const data = await response.json();
+  return data;
 };
 
-export const fetchBudgetedCategories = (id) => {
-  const promise = fetch(
+export const fetchBudgetedCategories = async (key, { id }) => {
+  const response = await fetch(
     `${process.env.REACT_APP_API_URL}/budgets/${id}/budgetCategories`
   );
-  return promise;
+  const data = await response.json();
+  return data;
 };
 
 export const addTransaction = ({ budgetId, data }) => {
