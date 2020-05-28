@@ -240,6 +240,62 @@
       "date": "2020-05-26",
       "budgetId": "1",
       "id": "DO2k7OJ"
+    },
+    {
+      "description": "transakcja 6",
+      "amount": 5.54,
+      "categoryId": "3",
+      "date": "2020-05-28",
+      "budgetId": "1",
+      "id": "2evVZP_"
+    },
+    {
+      "description": "transakcja7",
+      "amount": 5.54,
+      "categoryId": "3",
+      "date": "2020-05-28",
+      "budgetId": "1",
+      "id": "yBee-04"
+    },
+    {
+      "description": "transakcja 8",
+      "amount": 6.67,
+      "categoryId": "3",
+      "date": "2020-05-28",
+      "budgetId": "1",
+      "id": "2eDklbn"
+    },
+    {
+      "description": "transakcja9",
+      "amount": 9.98,
+      "categoryId": "3",
+      "date": "2020-05-28",
+      "budgetId": "1",
+      "id": "if4K_lx"
+    },
+    {
+      "description": "transakcja 10",
+      "amount": 1.32,
+      "categoryId": "5",
+      "date": "2020-05-20",
+      "budgetId": "1",
+      "id": "KTx8aub"
+    },
+    {
+      "description": "transakcja 12",
+      "amount": 2.87,
+      "categoryId": "6",
+      "date": "2020-05-28",
+      "budgetId": "1",
+      "id": "qfJMqcg"
+    },
+    {
+      "description": "transakcja 13",
+      "amount": 6.66,
+      "categoryId": "5",
+      "date": "2020-05-28",
+      "budgetId": "1",
+      "id": "MtvqU0X"
     }
   ]
 }
