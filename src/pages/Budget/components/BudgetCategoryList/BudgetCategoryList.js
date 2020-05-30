@@ -1,5 +1,5 @@
-import React, { useMemo, useRef, useCallback } from "react";
-import { connect } from "react-redux";
+import React, { useMemo, useRef, useCallback, useContext } from "react";
+
 import "styled-components/macro";
 import { groupBy } from "lodash";
 import { useTranslation } from "react-i18next";
@@ -11,9 +11,9 @@ import { ToggleableList } from "components";
 import ParentCategory from "./ParentCategory";
 import CategoryItem from "./CategoryItem";
 
-import { selectParentCategory } from "data/actions/budget.actions";
+import BudgetContext from "data/context/budget.context";
 
-function BudgetCategoryList({ selectParentCategory }) {
+function BudgetCategoryList() {
   const { data: budget } = useQuery(
     ["budget", { id: 1 }],
     API.budget.fetchBudget
@@ -26,6 +26,8 @@ function BudgetCategoryList({ selectParentCategory }) {
     ["budgetedCategories", { id: 1 }],
     API.budget.fetchBudgetedCategories
   );
+
+  const { setSelectedParentCategoryId } = useContext(BudgetContext.store);
 
   const { t } = useTranslation();
   const handleClickParentCategoryRef = useRef(null);
@@ -41,14 +43,14 @@ function BudgetCategoryList({ selectParentCategory }) {
   );
 
   const handleClearParentCategorySelect = useCallback(() => {
-    selectParentCategory();
+    setSelectedParentCategoryId();
     handleClickParentCategoryRef.current();
-  }, [selectParentCategory, handleClickParentCategoryRef]);
+  }, [setSelectedParentCategoryId, handleClickParentCategoryRef]);
 
   const handleSelectRestParentCategories = useCallback(() => {
-    selectParentCategory(null);
+    setSelectedParentCategoryId(null);
     handleClickParentCategoryRef.current();
-  }, [selectParentCategory, handleClickParentCategoryRef]);
+  }, [setSelectedParentCategoryId, handleClickParentCategoryRef]);
 
   const listItems = useMemo(
     () =>
@@ -60,7 +62,7 @@ function BudgetCategoryList({ selectParentCategory }) {
               name={parentName}
               onClick={() => {
                 onClick(parentName);
-                selectParentCategory(parentName);
+                setSelectedParentCategoryId(parentName);
               }}
               categories={categories}
               transactions={budget.transactions}
@@ -85,7 +87,7 @@ function BudgetCategoryList({ selectParentCategory }) {
       allCategories,
       budget.transactions,
       budgetedCategoriesByParent,
-      selectParentCategory,
+      setSelectedParentCategoryId,
     ]
   );
 
@@ -174,4 +176,4 @@ function BudgetCategoryList({ selectParentCategory }) {
   );
 }
 
-export default connect(null, { selectParentCategory })(BudgetCategoryList);
+export default BudgetCategoryList;

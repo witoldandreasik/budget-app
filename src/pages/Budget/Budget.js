@@ -1,12 +1,19 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import { Grid } from "./Budget.css";
 import { Modal, Button, SuspenseErrorBoundary } from "components";
+import BudgetContext from "data/context/budget.context";
 
-import BudgetCategoryList from "pages/Budget/components/BudgetCategoryList";
-import BudgetTransactionList from "pages/Budget/components/BudgetTransactionList";
-import AddTransactionView from "pages/Budget/components/AddTransactionForm";
+const BudgetCategoryList = React.lazy(() =>
+  import("pages/Budget/components/BudgetCategoryList")
+);
+const BudgetTransactionList = React.lazy(() =>
+  import("pages/Budget/components/BudgetTransactionList")
+);
+const AddTransactionView = React.lazy(() =>
+  import("pages/Budget/components/AddTransactionForm")
+);
 
 function Budget({
   fetchBudget,
@@ -14,8 +21,9 @@ function Budget({
   fetchAllCategories,
   addTransaction,
 }) {
+  const [showTransactions, setShowTransactions] = useState();
   return (
-    <Fragment>
+    <BudgetContext.BudgetProvider>
       <Grid>
         <section>
           <SuspenseErrorBoundary>
@@ -25,7 +33,10 @@ function Budget({
         <section>
           <SuspenseErrorBoundary>
             <Button to="/budget/transactions/new">Add new transactions</Button>
-            <BudgetTransactionList />
+            <Button onClick={() => setShowTransactions(!showTransactions)}>
+              {showTransactions ? "Hide transactions" : "Show transactions"}
+            </Button>
+            {showTransactions && <BudgetTransactionList />}
           </SuspenseErrorBoundary>
         </section>
       </Grid>
@@ -37,7 +48,7 @@ function Budget({
           </Modal>
         </Route>
       </Switch>
-    </Fragment>
+    </BudgetContext.BudgetProvider>
   );
 }
 

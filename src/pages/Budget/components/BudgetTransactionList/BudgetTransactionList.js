@@ -1,14 +1,15 @@
-import React, { useMemo } from "react";
-import { connect } from "react-redux";
+import React, { useMemo, useContext } from "react";
+
 import { groupBy } from "lodash";
 import { useQuery } from "react-query";
 
 import { formatCurrency, formatDate } from "utils";
 import API from "data/fetch";
+import BudgetContext from "data/context/budget.context";
 
 import { List, ListItem } from "./BudgetTransactionList.css";
 
-function BudgetTransactionList({ selectedParentCategoryId }) {
+function BudgetTransactionList() {
   const { data: budget } = useQuery(
     ["budget", { id: 1 }],
     API.budget.fetchBudget
@@ -21,6 +22,9 @@ function BudgetTransactionList({ selectedParentCategoryId }) {
     ["budgetedCategories", { id: 1 }],
     API.budget.fetchBudgetedCategories
   );
+
+  const { selectedParentCategoryId } = useContext(BudgetContext.store);
+
   const filteredTransactionsBySelectedParentCategory = useMemo(() => {
     if (typeof selectedParentCategoryId === "undefined") {
       return budget.transactions;
@@ -90,6 +94,4 @@ function BudgetTransactionList({ selectedParentCategoryId }) {
   );
 }
 
-export default connect((state) => ({
-  selectedParentCategoryId: state.budget.selectedParentCategoryId,
-}))(BudgetTransactionList);
+export default BudgetTransactionList;
