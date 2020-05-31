@@ -27,7 +27,15 @@ function BudgetCategoryList() {
     API.budget.fetchBudgetedCategories
   );
 
-  const { setSelectedParentCategoryId } = useContext(BudgetContext.store);
+  const { dispatch } = useContext(BudgetContext.store);
+  const setSelectedParentCategoryId = useCallback(
+    (id) =>
+      dispatch({
+        type: "selectedParentCategoryId",
+        payload: id,
+      }),
+    [dispatch]
+  );
 
   const { t } = useTranslation();
   const handleClickParentCategoryRef = useRef(null);
