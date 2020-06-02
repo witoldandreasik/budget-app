@@ -6,18 +6,20 @@ export default {
   },
   colors: {
     gray: {
-      light: "rgb(238,238,238)",
-      normal: "rgb(222,220,220)",
+      normal: "#EEEEEE",
       dark: "rgb(212,212,212)",
     },
+    black: {
+      normal: "#1A1A1D",
+    },
     green: {
-      normal: "rgb(85,150,0)",
+      normal: "rgb(10,120,0)",
     },
     red: {
-      normal: "rgb(165,61,54)",
+      normal: "#F13C20",
     },
     pink: {
-      normal: "rgb(219,112,147)",
+      normal: "#E7717D",
     },
   },
 };

@@ -19,9 +19,9 @@ const Root = styled.div`
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid ${({ theme }) => theme.colors.gray.normal};
-    border-color: ${({ theme }) => theme.colors.gray.normal} transparent
-      ${({ theme }) => theme.colors.gray.normal} transparent;
+    border: 6px solid ${({ theme }) => theme.colors.gray.dark};
+    border-color: ${({ theme }) => theme.colors.gray.dark} transparent
+      ${({ theme }) => theme.colors.gray.dark} transparent;
     animation: ${around} 1.2s linear infinite;
   }
 `;

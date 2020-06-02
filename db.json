@@ -100,7 +100,7 @@
   "budgets": [
     {
       "id": "1",
-      "name": "April",
+      "name": "Your Budget",
       "totalAmount": 2400
     }
   ],
@@ -296,6 +296,46 @@
       "date": "2020-05-28",
       "budgetId": "1",
       "id": "MtvqU0X"
+    },
+    {
+      "description": "shopping transaction",
+      "amount": 9.02,
+      "date": "2020-06-01",
+      "categoryId": "7",
+      "budgetId": "1",
+      "id": "-QadvjN"
+    },
+    {
+      "description": "231",
+      "amount": 33,
+      "categoryId": "5",
+      "date": "2020-06-01",
+      "budgetId": "1",
+      "id": "BmEkzaH"
+    },
+    {
+      "description": "q",
+      "amount": 33,
+      "categoryId": "2",
+      "date": "2020-06-02",
+      "budgetId": "1",
+      "id": "T6V20cO"
+    },
+    {
+      "description": "qq",
+      "amount": 2,
+      "categoryId": "3",
+      "date": "2020-05-13",
+      "budgetId": "1",
+      "id": "Jh4OpKS"
+    },
+    {
+      "description": "q2",
+      "amount": 3,
+      "categoryId": "3",
+      "date": "2020-06-25",
+      "budgetId": "1",
+      "id": "-tafDeA"
     }
   ]
 }

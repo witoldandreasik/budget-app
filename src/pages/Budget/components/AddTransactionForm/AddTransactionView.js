@@ -2,7 +2,6 @@ import React from "react";
 
 import { useQuery, useMutation, queryCache } from "react-query";
 import { useHistory } from "react-router-dom";
-
 import AddTransactionForm from "./AddTransactionForm";
 import API from "data/fetch";
 
