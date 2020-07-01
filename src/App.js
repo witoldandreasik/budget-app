@@ -25,10 +25,10 @@ function App({ budget, fetchBudget, fetchBudgetedCategories }) {
       <Router>
         <Navigation
           items={[
-            { content: "Homepage", to: "/" },
+            { content: "Homepage", to: "/budget-app" },
             {
               content: "Budget",
-              to: "/budget",
+              to: "/budget-app/budget",
             },
           ]}
           RightElement={
@@ -50,10 +50,10 @@ function App({ budget, fetchBudget, fetchBudgetedCategories }) {
         />
         <Wrapper>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/budget-app">
               Homepage
             </Route>
-            <Route path="/budget">
+            <Route path="/budget-app/budget">
               <Budget />
             </Route>
           </Switch>
